@@ -1,0 +1,9 @@
+export type Profile={name:string;character:string};
+export type Character={id:string;name:string;gender:'여성'|'남성';age:'청년'|'중년'|'시니어';mood:string;file:string;atlas:'main'|'senior'|'extra';cell:number};
+export type Slot={slot:string;id:string;title:string;type:string;addr:string;lat:number|null;lon:number|null;leg_km:number|null;facts:string[];access:[string,string[]][];reason:string};
+export type Day={date:string;slots:Slot[]};
+export type Answer={kind:'course'|'ask_back'|'abstain'|'error';text:string;days?:Day[];backup?:Partial<Slot>[];cafes?:Partial<Slot>[];notices?:string[];rain_reason?:string;missing?:string[]};
+export type Result={answer:Answer;request:{region?:string;days?:number;start_date?:string};weather:{days?:{date:string;available:boolean;temp_min:number;temp_max:number;rain_prob:number;indoor?:boolean}[]};violations:unknown[];mode:string;source:'demo'|'live';credit:string;places:Record<string,{id:string;image?:string;modified?:string;fetched?:string;lat?:number;lon?:number}>;markdown:string};
+export type ApiSession={id:string;token:string;mode:'demo'|'live'};
+export type JobEvent={id:number;type:string;node?:string;result?:Result;code?:string};
+export type Chat={role:'user'|'assistant';text:string};

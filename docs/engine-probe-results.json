@@ -1,0 +1,136 @@
+{
+  "ok": true,
+  "source": "fixture",
+  "engine_revision": "bb479a543099a3de5b7b544e50683d7402b14642",
+  "production_ready": false,
+  "checks": [
+    {
+      "scenario": "course",
+      "answer_kinds": [
+        "course"
+      ],
+      "nodes": [
+        "route",
+        "parse_request",
+        "retrieve",
+        "grade_documents",
+        "fetch_context",
+        "draft_course",
+        "validate_course",
+        "respond"
+      ],
+      "violations": [
+        []
+      ],
+      "network_attempts": 0,
+      "streamlit_imported": false,
+      "persistent_storage": false
+    },
+    {
+      "scenario": "clarification",
+      "answer_kinds": [
+        "ask_back",
+        "course"
+      ],
+      "nodes": [
+        "route",
+        "parse_request",
+        "ask_back",
+        "route",
+        "parse_request",
+        "retrieve",
+        "grade_documents",
+        "fetch_context",
+        "draft_course",
+        "validate_course",
+        "respond"
+      ],
+      "violations": [
+        [],
+        []
+      ],
+      "network_attempts": 0,
+      "streamlit_imported": false,
+      "persistent_storage": false
+    },
+    {
+      "scenario": "abstain",
+      "answer_kinds": [
+        "abstain"
+      ],
+      "nodes": [
+        "route",
+        "parse_request",
+        "retrieve",
+        "grade_documents",
+        "transform_query",
+        "retrieve",
+        "grade_documents",
+        "transform_query",
+        "retrieve",
+        "grade_documents",
+        "abstain"
+      ],
+      "violations": [
+        []
+      ],
+      "network_attempts": 0,
+      "streamlit_imported": false,
+      "persistent_storage": false
+    },
+    {
+      "scenario": "edit",
+      "answer_kinds": [
+        "course",
+        "course"
+      ],
+      "nodes": [
+        "route",
+        "parse_request",
+        "retrieve",
+        "grade_documents",
+        "fetch_context",
+        "draft_course",
+        "validate_course",
+        "respond",
+        "route",
+        "add_candidates",
+        "edit_course",
+        "validate_course",
+        "respond"
+      ],
+      "violations": [
+        [],
+        []
+      ],
+      "network_attempts": 0,
+      "streamlit_imported": false,
+      "persistent_storage": false
+    },
+    {
+      "scenario": "failure",
+      "answer_kinds": [
+        "abstain"
+      ],
+      "nodes": [
+        "route",
+        "parse_request",
+        "retrieve",
+        "grade_documents",
+        "transform_query",
+        "retrieve",
+        "grade_documents",
+        "transform_query",
+        "retrieve",
+        "grade_documents",
+        "abstain"
+      ],
+      "violations": [
+        []
+      ],
+      "network_attempts": 0,
+      "streamlit_imported": false,
+      "persistent_storage": false
+    }
+  ]
+}
