@@ -6,6 +6,7 @@ export async function call<T>(path:string,session?:ApiSession,init:RequestInit={
  const response=await fetch(base+path,{...init,headers});if(!response.ok){let code='request_failed';try{code=(await response.json()).detail||code}catch{}throw new ApiError(response.status,code)}return response.json();
 }
 export function health(){return call<{ready:boolean;mode:'demo'|'live';error?:string}>('/health')}
+export function getShowcaseCourse(){return call<Result>('/showcase-course')}
 export function createSession(){return call<ApiSession>('/sessions',undefined,{method:'POST'})}
 export function getSession(s:ApiSession){return call<{result:Result|null;messages:Chat[];active_job:string|null}>(`/sessions/${s.id}`,s)}
 export function send(s:ApiSession,message:string,id:string){return call<{job_id:string}>(`/sessions/${s.id}/messages`,s,{method:'POST',body:JSON.stringify({message,request_id:id})})}
@@ -25,4 +26,17 @@ export async function watch(s:ApiSession,job:string,onEvent:(e:JobEvent)=>void,s
   await new Promise(r=>setTimeout(r,500));
  }throw new ApiError(503,'events_disconnected');
 }
-export async function download(s:ApiSession){const response=await fetch(base+`/sessions/${s.id}/export`,{headers:{Authorization:`Bearer ${s.token}`}});if(!response.ok)throw new ApiError(response.status,'export_failed');const url=URL.createObjectURL(await response.blob());const a=document.createElement('a');a.href=url;a.download='tripbuddy-course.md';a.click();URL.revokeObjectURL(url)}
+function downloadMarkdown(blob: Blob, filename: string) {
+ const url = URL.createObjectURL(blob);
+ const link = document.createElement('a');
+ link.href = url;
+ link.download = filename;
+ link.click();
+ setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function downloadShowcaseCourse(markdown: string) {
+ downloadMarkdown(new Blob([markdown], {type: 'text/markdown;charset=utf-8'}), 'tripbuddy-showcase-course.md');
+}
+
+export async function download(s:ApiSession){const response=await fetch(base+`/sessions/${s.id}/export`,{headers:{Authorization:`Bearer ${s.token}`}});if(!response.ok)throw new ApiError(response.status,'export_failed');downloadMarkdown(await response.blob(),'tripbuddy-course.md')}

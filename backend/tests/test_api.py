@@ -94,17 +94,30 @@ def test_real_persistent_graph_demo_roundtrip(tmp_path):
             return finish(c,response.json()['job_id'],h)
         first=send('강릉 2일 여행','first-123')
         assert first['result']['answer']['kind']=='ask_back'
-        next_turn=send('2026-11-21 출발','next-12345')
+        next_turn=send('내일 출발','next-12345')
         assert next_turn['status']=='completed',next_turn
         answer=next_turn['result']['answer']
         assert answer['kind']=='course' and len(answer['days'])==2
+        assert any(e.get('node') == 'route' and e.get('operation') == 'new' for e in next_turn['events'])
+        assert any(e.get('node') == 'parse_request' and e.get('region') == '강릉' for e in next_turn['events'])
+        assert [cafe['id'] for cafe in answer['cafes']] == ['demo-c0', 'demo-c1']
+        festivals = next_turn['result']['festivals']
+        assert [event['label'] for event in festivals] == ['축제', '상설 · 장기 행사']
+        assert all(event['days_in_trip'] == [day['date'] for day in answer['days']] for event in festivals)
         assert next_turn['result']['violations']==[]
+        for day in answer['days']:
+            for slot in day['slots']:
+                place = next_turn['result']['places'][slot['id']]
+                assert '합성 장소' in place['overview']
+                assert '체험 예시' in place['hours']
         edit=send('첫째 날 점심만 바꿔 줘','edit-12345')
         assert edit['status']=='completed'
+        assert any(e.get('node') == 'route' and e.get('operation') == 'edit' for e in edit['events'])
         after=edit['result']['answer']
         old=[s['id'] for d in answer['days'] for s in d['slots']]
         new=[s['id'] for d in after['days'] for s in d['slots']]
         assert [i for i,(a,b) in enumerate(zip(old,new)) if a!=b]==[1]
+        assert '합성 장소' in edit['result']['places'][new[1]]['overview']
         assert '합성 데이터' in c.get(f"/sessions/{s['id']}/export",headers=h).text
 
 

@@ -5,3 +5,73 @@
 @media(max-width:760px){.home-hero{min-height:445px;align-items:flex-start;padding:25px 22px}.hero-copy{width:100%}.hero-copy h1{font-size:26px;line-height:1.4;max-width:100%}.hero-copy p{max-width:260px;font-size:13px}.hero-art{width:210px;height:210px;right:-7px;bottom:-8px}.hero-art>.character-art{width:210px}.hero-bubble{top:65px;left:-105px;width:155px;font-size:11px;line-height:1.8}.buddy-name{max-width:100%;font-size:11px;margin-top:5px}.cloud-one{top:40px;right:-40px}}
 .place-photo{display:block;width:100%;height:160px;object-fit:cover;border-radius:10px;margin-bottom:13px}.place-address,.place-fact,.distance,.place-source,.credit,.notices,.backup,.composer-note,.demo-help,.app-footer{color:#82718f}.chat-bubble small,.source-label.demo,.mode-banner{color:#8d75a2}
 .studio-controls,.studio-preview,.studio-panel,.studio-controls fieldset{min-width:0}.passport{max-width:100%}@media(max-width:760px){.studio-preview{padding-top:145px}.greeting-bubble{top:48px}.passport{padding-inline:25px}.segmented button{min-width:0;padding-inline:6px}}
+
+.course-result .section-title{align-items:center}
+.course-result .section-title h2{margin:0}
+.course-download{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;background:var(--lavender);color:#67478e;font-size:13px;flex-shrink:0}
+.course-navigation{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}
+.course-navigation .day-tabs,.course-navigation .view-tabs{margin:0}
+.course-result .weather-line{margin:0 0 12px}
+.place-card h3{margin:4px 0}
+.place-address svg{flex-shrink:0}
+.place-card .place-photo{height:100px;margin:8px 0}
+.place-intro{margin:10px 0;font-size:14px;line-height:1.65;overflow-wrap:anywhere}
+.place-intro span{display:block;margin-bottom:2px;color:#695b76;font-size:12px;font-weight:600}
+.place-visit-info{margin:10px 0;padding:8px 12px;border-radius:9px;background:#f1ecf7;color:var(--ink);font-size:14px}
+.place-visit-info div{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:6px}
+.place-visit-info div+div{margin-top:4px}
+.place-visit-info dt{font-weight:600}
+.place-visit-info dd{margin:0;white-space:pre-line;overflow-wrap:anywhere}
+.course-result .place-reason{font-size:13px;color:#665970}
+.place-card .place-fact{font-size:13px;color:#6f4e49;overflow-wrap:anywhere}
+.place-details{margin-top:10px}
+.place-details summary,.backup summary{color:#675379;font-size:13px;cursor:pointer}
+.route-stops{padding-left:24px;font-size:14px}
+.route-stops small{display:block;color:#695b76}
+@media(max-width:760px){
+  .course-download,.place-actions button,.place-actions a,.course-navigation button{min-height:44px}
+}
+
+.showcase-button{padding:7px 11px;border-radius:9px;background:var(--lavender);color:#67478e;font-size:13px;white-space:nowrap}
+.showcase-button[aria-pressed=true]{background:#e9def7}
+@media(max-width:400px){
+  .showcase-button{padding-inline:7px;font-size:11px}
+  .app-header .header-right{gap:7px}
+}
+
+.course-discovery h2{margin-bottom:8px}
+.discovery-progress{display:flex;align-items:center;gap:8px;color:#695287;font-size:14px}
+.discovery-carousel{margin-top:22px}
+.discovery-heading,.discovery-controls{display:flex;align-items:center;gap:8px}
+.discovery-heading{justify-content:space-between;flex-wrap:wrap}
+.discovery-heading h3{margin:0;font-size:16px}
+.discovery-controls{color:#695287;font-size:12px}
+.discovery-controls button{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--lavender);color:#65468e}
+.discovery-caption{margin:0 0 9px;color:#695b76;font-size:13px}
+.discovery-track{position:relative;display:flex;gap:12px;list-style:none;margin:0;padding:0;min-width:0;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.discovery-card{flex:0 0 100%;min-width:0;scroll-snap-align:start;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fcfafe}
+.discovery-photo{position:relative;display:grid;place-items:center;height:clamp(120px,19vw,200px);background:var(--lavender);color:#8b6cc5}
+.discovery-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.discovery-copy{padding:12px 14px}
+.discovery-copy span{font-size:12px;color:#695287}
+.discovery-copy h4{margin:2px 0 4px;font-size:17px}
+.discovery-copy p{margin:0;font-size:14px;color:#61556c}
+.course-edit-progress{padding:10px 12px;border-radius:10px;background:var(--lavender)}
+@media(pointer:coarse){.discovery-controls button{width:44px;height:44px}}
+@media(prefers-reduced-motion:reduce){.discovery-track{scroll-behavior:auto}}
+
+.recommended-cafe-photo{display:block;width:min(100%,270px);height:120px;object-fit:contain;object-position:left center;margin:6px 0}
+.recommended-cafe-photo[hidden]{display:none}
+.festival-card{display:block;width:100%;height:100%;background:transparent;text-align:left;color:var(--ink)}
+.festival-card:focus-visible{outline-offset:-4px}
+.festival-photo{position:relative;display:grid;place-items:center;height:clamp(126px,22vw,210px);background:var(--lavender);color:#8768b9}
+.festival-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.festival-card-copy{display:grid;gap:4px}
+.festival-card-copy strong{font-size:17px}
+.festival-card-copy .festival-details-link{font-weight:700;color:#603b8d}
+.festival-dialog{width:min(540px,calc(100% - 32px));max-height:calc(100% - 32px);padding:20px;border:1px solid var(--line);border-radius:18px;color:var(--ink);background:white;overflow-y:auto}
+.festival-dialog::backdrop{background:#24183590}
+.festival-dialog header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.festival-dialog h3{margin:4px 0 0}
+.festival-dialog .place-visit-info div{grid-template-columns:minmax(5em,auto) minmax(0,1fr)}
+.festival-dialog .place-intro{white-space:pre-line}

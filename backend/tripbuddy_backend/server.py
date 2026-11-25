@@ -12,7 +12,7 @@ from uuid import uuid4
 
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse, PlainTextResponse
+from fastapi.responses import FileResponse, StreamingResponse, PlainTextResponse
 from fastapi.exceptions import RequestValidationError
 from pydantic import BaseModel, Field, field_validator
 
@@ -157,6 +157,13 @@ def create_app(engine=None):
     @app.get('/health')
     async def health():
         return {'alive':True,'ready':engine.ready,'mode':mode,'error':startup_error if not engine.ready else None}
+
+    @app.get('/showcase-course')
+    def showcase_course():
+        snapshot = project / 'data' / 'showcase-course.json'
+        if not snapshot.is_file():
+            raise HTTPException(404, 'showcase_course_missing')
+        return FileResponse(snapshot, media_type='application/json')
 
     @app.post('/sessions',status_code=201)
     async def new_session():

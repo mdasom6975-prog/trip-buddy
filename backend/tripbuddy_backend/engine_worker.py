@@ -35,7 +35,7 @@ def main():
         import config
         from graph.runtime import make_graph, open_checkpointer
         from graph.schemas import TripRequest, Grade, NewQuery, Route, Course, EditedCourse
-        from graph.present import export_markdown
+        from graph.present import excerpt, export_markdown, festival_cards
         from harness.trace import Trace
         from langgraph.checkpoint.memory import InMemorySaver
 
@@ -92,11 +92,26 @@ def main():
                     'region': region, 'type': type_, 'addr': f'{region} 체험 구역 (실제 장소 아님)',
                     'lat': lat + (n % 3) * .002, 'lon': lon + (n // 3) * .002,
                     'overview': 'API 연결을 확인하기 위한 합성 장소입니다. 실제 방문 장소가 아닙니다.',
+                    'hours_text': '09:00~18:00 (체험 예시)', 'parking': '주차 가능 (체험 예시)',
                     'modified': today.isoformat(), 'fetched': today.isoformat(),
                     'rest_status': 'always_open','rest_weekdays': [],'rest_nth': [],'rest_note': False,
                     'is_cafe': prefix == 'c', 'access': {}, 'pet': {},
                 } for prefix,label,type_,count in [('s','산책 공간','관광지',10),('f','식당','음식점',8),
                                                    ('i','실내 공간','문화시설',3),('c','카페','음식점',4)] for n in range(count)]
+
+                for kind, duration in (('축제', 7), ('장기 행사', 90)):
+                    places.append({
+                        'id': f'demo-event-{duration}', 'title': f'체험용 {kind}',
+                        'region': region, 'type': config.DETAIL_TYPES['15'],
+                        'addr': f'{region} 체험 구역 (실제 장소 아님)', 'lat': lat, 'lon': lon,
+                        'overview': '축제 정보 화면을 보여주기 위한 합성 행사입니다.',
+                        'extra': {
+                            'event_start': today.strftime('%Y%m%d'),
+                            'event_end': (today + timedelta(days=duration - 1)).strftime('%Y%m%d'),
+                            'event_place': '체험용 행사장',
+                            'program': '체험용 전시와 공연',
+                        },
+                    })
 
                 class FakeRetriever:
                     def __init__(self):
@@ -131,7 +146,14 @@ def main():
                             days.append({'date': (start+timedelta(days=i)).isoformat(), 'slots': [
                                 {'slot':s,'content_id':cid,'reason':'여행 흐름을 확인하는 체험용 일정입니다.'}
                                 for s,cid in zip(config.COURSE_SLOTS,ids)]})
-                        return Course.model_validate({'days':days,'backup':[{'content_id':'demo-i0','reason':'실내 대안 UI 확인용입니다.'}]})
+                        return Course.model_validate({
+                            'days': days,
+                            'backup': [{'content_id': 'demo-i0', 'reason': '실내 대안 UI 확인용입니다.'}],
+                            'cafes': [
+                                {'content_id': 'demo-c0', 'reason': '일정 중 쉬어 가는 체험용 카페입니다.'},
+                                {'content_id': 'demo-c1', 'reason': '주변 카페 추천을 확인하는 체험용 장소입니다.'},
+                            ],
+                        })
                     raise RuntimeError('unknown_schema')
 
                 def fake_weather(lat, lon, start, end):
@@ -158,8 +180,13 @@ def main():
                     if mode == 'values':
                         final = chunk
                     else:
-                        for node in chunk:
-                            emit('progress', node=node)
+                        for node, update in chunk.items():
+                            progress = {'node': node}
+                            if node == 'route' and update:
+                                progress['operation'] = update.get('mode')
+                            elif node == 'parse_request' and update:
+                                progress['region'] = (update.get('request') or {}).get('region')
+                            emit('progress', **progress)
                 if guarded_llm and guarded_llm.failure:
                     emit('failed', code=guarded_llm.failure)
                     continue
@@ -168,9 +195,34 @@ def main():
                 place_lookup = {p['id']:p for p in active_retriever.places}
                 selected_ids = {s['id'] for d in answer.get('days',[]) for s in d['slots']}
                 selected_ids.update(p['id'] for p in answer.get('backup',[])+answer.get('cafes',[]))
-                metadata = {cid:{k:place_lookup[cid].get(k) for k in ['id','title','image','modified','fetched','lat','lon']}
-                            for cid in selected_ids if cid in place_lookup}
+                metadata = {}
+                rechecked = final.get('rechecked') or {}
+                for cid in selected_ids:
+                    stored = place_lookup.get(cid)
+                    checked = rechecked.get(cid) or {}
+                    if stored is None or checked.get('withdrawn'):
+                        continue
+                    extra = stored.get('extra') or {}
+                    metadata[cid] = {
+                        **{key: stored.get(key) for key in ('title', 'image', 'modified', 'fetched', 'lat', 'lon')},
+                        'id': cid,
+                        'overview': excerpt(stored.get('overview'), 220),
+                        'hours': stored.get('hours_text'),
+                        'closure': stored.get('rest_text'),
+                        'parking': stored.get('parking'),
+                        'fee': extra.get('fee'),
+                        'main_menu': extra.get('menu_main'),
+                    }
+                festival_data = final.get('festivals') or {}
+                # The original gallery caps a single batch. Keep both groups and all matching events.
+                events = []
+                if answer['kind'] == 'course':
+                    for group in ('items', 'long_running'):
+                        records = festival_data.get(group) or []
+                        for start in range(0, len(records), config.GALLERY_MAX):
+                            events.extend(festival_cards({group: records[start:start + config.GALLERY_MAX]}, place_lookup))
                 result = {'answer':answer, 'request':final.get('request',{}),'weather':final.get('weather',{}),
+                    'festivals':events,
                     'violations':final.get('violations',[]),'mode':final.get('mode'),'source':MODE,
                     'places':metadata, 'usage':usage, 'provider':provider if MODE=='live' else 'fixture',
                     'model':config.MODELS[provider] if MODE=='live' else 'fixture', 'credit':'출처 : ⓒ한국관광공사' if MODE=='live' else '합성 데이터 · 실제 여행 정보 아님',

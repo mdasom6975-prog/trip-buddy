@@ -1,0 +1,190 @@
+{
+  "제주": [
+    {
+      "id": "126435",
+      "title": "성산일출봉 [유네스코 세계자연유산]",
+      "category": "명소",
+      "description": "분화구가 있는 오름에서 제주 동쪽 바다를 바라볼 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource_photo/26/3052926_image2_1.jpg",
+      "address": "제주특별자치도 서귀포시 성산읍 일출로 284-12"
+    },
+    {
+      "id": "127490",
+      "title": "협재해수욕장",
+      "category": "명소",
+      "description": "맑은 바닷물 너머로 비양도가 보이는 서쪽 해변이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/66/3096066_image2_1.jpg",
+      "address": "제주특별자치도 제주시 한림읍 한림로 329-10"
+    },
+    {
+      "id": "2660802",
+      "title": "오설록 티뮤지엄",
+      "category": "명소",
+      "description": "차 문화를 둘러보고 제주 녹차밭 풍경을 만날 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/57/3497257_image2_1.jpg",
+      "address": "제주특별자치도 서귀포시 안덕면 신화역사로 15"
+    },
+    {
+      "id": "2858680",
+      "title": "카페콜라",
+      "category": "카페",
+      "description": "콜라를 테마로 꾸민 제주의 카페예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/70/2858670_image2_1.jpg",
+      "address": "제주특별자치도 제주시 한림읍 일주서로 5857"
+    }
+  ],
+  "강릉": [
+    {
+      "id": "127722",
+      "title": "안목해변",
+      "category": "명소",
+      "description": "동해 바다를 보고 안목 커피거리를 함께 둘러보기 좋아요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/39/4145139_image2_1.jpg",
+      "address": "강원특별자치도 강릉시 창해로14번길 20-1"
+    },
+    {
+      "id": "125800",
+      "title": "강릉 선교장",
+      "category": "명소",
+      "description": "전통 한옥과 정원을 함께 볼 수 있는 조선시대 고택이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/68/3493168_image2_1.jpg",
+      "address": "강원특별자치도 강릉시 운정길 63 (운정동)"
+    },
+    {
+      "id": "2804197",
+      "title": "아르떼뮤지엄 강릉",
+      "category": "명소",
+      "description": "강원도의 산과 바다를 주제로 한 몰입형 미디어아트를 볼 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/33/3085833_image2_1.jpg",
+      "address": "강원특별자치도 강릉시 난설헌로 131 (초당동)"
+    },
+    {
+      "id": "1950195",
+      "title": "테라로사 커피공장",
+      "category": "카페",
+      "description": "강릉의 커피를 맛볼 수 있는 로스터리 카페예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/90/3557890_image2_1.jpg",
+      "address": "강원특별자치도 강릉시 구정면 현천길 7"
+    }
+  ],
+  "부산": [
+    {
+      "id": "126081",
+      "title": "해운대해수욕장",
+      "category": "명소",
+      "description": "넓은 모래사장과 도심 풍경이 만나는 해변이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/47/4105447_image2_1.jpg",
+      "address": "부산광역시 해운대구 해운대해변로 264"
+    },
+    {
+      "id": "1997221",
+      "title": "부산 감천문화마을",
+      "category": "명소",
+      "description": "언덕을 따라 이어진 골목과 알록달록한 집들이 있는 마을이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/91/3365491_image2_1.jpg",
+      "address": "부산광역시 사하구 감내2로 203"
+    },
+    {
+      "id": "126078",
+      "title": "광안리해수욕장",
+      "category": "명소",
+      "description": "해변에서 광안대교를 바라볼 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource_photo/46/4140046_image2_1.JPG",
+      "address": "부산광역시 수영구 광안해변로 219 (광안동)"
+    },
+    {
+      "id": "2832729",
+      "title": "모모스커피 본점",
+      "category": "카페",
+      "description": "부산에서 시작한 커피 브랜드의 본점이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/27/2832727_image2_1.jpg",
+      "address": "부산광역시 금정구 오시게로 20 (부곡동)"
+    }
+  ],
+  "서울": [
+    {
+      "id": "126508",
+      "title": "경복궁",
+      "category": "명소",
+      "description": "조선의 궁궐 건축과 넓은 궁궐 정원을 둘러볼 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/98/3487598_image2_1.jpg",
+      "address": "서울특별시 종로구 사직로 161 (세종로)"
+    },
+    {
+      "id": "126537",
+      "title": "북촌한옥마을",
+      "category": "명소",
+      "description": "전통 한옥이 이어지는 골목에서 서울의 오래된 풍경을 만날 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/04/3304404_image2_1.jpg",
+      "address": "서울특별시 종로구 계동길 37 (계동)"
+    },
+    {
+      "id": "2848050",
+      "title": "아키비스트 서촌",
+      "category": "카페",
+      "description": "서촌에 있어 궁궐이나 골목 산책 중 들르기 좋은 카페예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/47/2848047_image2_1.jpg",
+      "address": "서울특별시 종로구 효자로13길 52 (효자동)"
+    }
+  ],
+  "전북": [
+    {
+      "id": "147656",
+      "title": "전주 경기전",
+      "category": "명소",
+      "description": "태조 이성계의 어진을 모신 전주의 역사 유적이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource_photo/45/3365745_image2_1.jpg",
+      "address": "전북특별자치도 전주시 완산구 태조로 44 (풍남동3가)"
+    },
+    {
+      "id": "3056595",
+      "title": "전주한옥마을역사관",
+      "category": "명소",
+      "description": "전주한옥마을의 형성과 생활사를 살펴볼 수 있어요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/75/4110175_image2_1.jpg",
+      "address": "전북특별자치도 전주시 완산구 최명희길 17-10 (풍남동3가)"
+    },
+    {
+      "id": "4119426",
+      "title": "전주한옥마을전망대카페",
+      "category": "카페",
+      "description": "한옥마을 지붕 풍경을 바라보며 쉬어갈 수 있는 카페예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/96/4116496_image2_1.jpg",
+      "address": "전북특별자치도 전주시 완산구 어진길 15 (남노송동)"
+    }
+  ],
+  "전남광주": [
+    {
+      "id": "2009775",
+      "title": "국립아시아문화전당",
+      "category": "명소",
+      "description": "광주에서 전시와 공연을 만날 수 있는 복합문화공간이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/17/4109317_image2_1.jpg",
+      "address": "전남광주통합특별시 동구 문화전당로 38 (광산동)"
+    },
+    {
+      "id": "128834",
+      "title": "죽녹원",
+      "category": "명소",
+      "description": "대나무 숲길을 따라 걸을 수 있는 담양의 명소예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/36/4017136_image2_1.jpg",
+      "address": "전남광주통합특별시 담양군 담양읍 죽녹원로 119"
+    },
+    {
+      "id": "126374",
+      "title": "담양 소쇄원",
+      "category": "명소",
+      "description": "계곡과 정자가 어우러진 담양의 전통 정원이에요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/70/4098370_image2_1.jpg",
+      "address": "전남광주통합특별시 담양군 가사문학면 소쇄원길 17"
+    },
+    {
+      "id": "2833065",
+      "title": "카페호시담",
+      "category": "카페",
+      "description": "담양에서 정원 풍경을 보며 쉬어갈 수 있는 카페예요.",
+      "image": "https://tong.visitkorea.or.kr/cms/resource/55/2833055_image2_1.png",
+      "address": "전남광주통합특별시 담양군 추령로 375-21"
+    }
+  ]
+}
